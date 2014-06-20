@@ -9,6 +9,15 @@ Because I found nothing regarding this library for Raspberry Pi, except for one 
 
 Anyway, my efforts turned my goal into reality.
 
+Instructions:
+
+	0. Be sure you have the nRF24L01+ module connected to the SPI pins (CE is physical pin 25).
+	1. Navigate into RF24NetworkRPi directory.
+	2. On the console, write the command "make". Then "sudo make install".
+	3. To run any example, e.g. meshping, navigate to that directory and do "make".
+	4. Run the program with "sudo ./meshping"
+	5. Enjoy. Now you can do a mesh network using this module inside your house.
+
 ==============
 
 I've ported only the meshping example, but I plan to port the others ASAP.
