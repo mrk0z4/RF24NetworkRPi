@@ -16,7 +16,7 @@
 #include "../RF24Network.h"
 #include "../RF24.h"
 #include "../spi.h"
-//#include "printf.h"
+#include <stdio.h>
 
 // nRF24L01(+) radio attached using Getting Started board 
 //RF24 radio(9,10);
@@ -40,18 +40,7 @@ struct payload_t
 
 void setup(void)
 {
-  //Serial.begin(57600);
-  //Serial.println("RF24Network/examples/helloworld_rx/");
- 
-  //SPI.begin();
   radio.begin();
-  //radio.enableDynamicPayloads();
-  //radio.setAutoAck(1);
-  //radio.setRetries(15,15);
-  //radio.setDataRate(RF24_250KBPS);
-  //radio.setPALevel(RF24_PA_MAX);
-  //radio.setChannel(0);
-  //radio.setCRCLength(RF24_CRC_16);
   network.begin(/*channel*/ 90, /*node address*/ this_node);
 }
 
@@ -67,20 +56,16 @@ void loop(void)
     RF24NetworkHeader header;
     payload_t payload;
     network.read(header,&payload,sizeof(payload));
-    //Serial.print("Received packet #");
-    //Serial.print(payload.counter);
-    //Serial.print(" at ");
-    //Serial.println(payload.ms);
     printf("Received packet #%i at %i\r\n", payload.counter, payload.ms);
   }
 }
 
 int main(int argc, char** argv) 
 {
-        setup();
-        while(1){
-                loop();
+  setup();
+  while(1){
+    loop();
 	}
 
-        return 0;
+  return 0;
 }

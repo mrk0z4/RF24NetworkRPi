@@ -45,11 +45,6 @@ RF24 radio("/dev/spidev0.0",8000000,25);
 RF24Network network(radio);
 
 unsigned long millis(void);
-//bool send_T(uint16_t to);
-//bool send_N(uint16_t to);
-//void handle_T(RF24NetworkHeader& header);
-//void handle_N(RF24NetworkHeader& header);
-//void add_node(uint16_t node);
 
 // Our node address
 uint16_t this_node;
@@ -74,47 +69,21 @@ void add_node(uint16_t node);
 
 void setup(void)
 {
-  //
-  // Print preamble
-  //
-  
-  //Serial.begin(57600);
-  //printf_begin();
-  printf("\n\rRF24Network/examples/meshping/\n\r");
-  
-  //
-  // Pull node address out of eeprom 
-  //
 
-  // Which node are we?
-  //this_node = nodeconfig_read();
-  this_node = 02;
+  this_node = 00;
 
   //
   // Bring up the RF network
   //
 
-  //SPI.begin();
   radio.begin();
   network.begin(/*channel*/ 100, /*node address*/ this_node );
-
-/*
-  network.update();
-  send_T(00);
-  usleep(1000000);
-  send_T(00);
-  usleep(1000000);
-  send_T(00);
-  usleep(1000000);
-  send_T(00);
-  usleep(1000000);
-  send_T(00);
-  usleep(1000000);
-*/
+  printf("My ID is %i\n\r", this_node);
 }
 
 void loop(void)
 {
+
   // Pump the network regularly
   network.update();
 
